@@ -6,7 +6,7 @@ from uuid import uuid4
 from flask import Flask, jsonify, request
 from urllib.parse import urlparse
 from Blockchain.blockchain import Blockchain 
-
+import requests
 # The server app, the server represents one node on the blockchain
 # Instantiate our Node
 app = Flask(__name__)
@@ -64,10 +64,18 @@ def full_chain():
     }
     return jsonify(response), 200
 
+@app.route('/nodes/print', methods=['GET'])
+def print_all_nodes():
+    allNodes = list(blockchain.nodes)
+    response = {
+        'nodes' : allNodes
+    }
+    return jsonify(response), 201
+
 @app.route('/nodes/register', methods=['POST'])
 def register_nodes():
     values = request.get_json()
-
+    print(f"\n\n\n\n {values} \n\n\n\n")
     nodes = values.get('nodes')
     if nodes is None:
         return "Error: Please supply a valid list of nodes", 400

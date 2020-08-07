@@ -81,6 +81,14 @@ def register_nodes():
     }
     return jsonify(response), 201
 
+@app.route('/nodes/print', methods=['GET'])
+def print_all_nodes():
+    allNodes = list(blockchain.nodes)
+    response = {
+        'Nodes' : allNodes
+    }
+    return jsonify(response), 201
+
 @app.route('/nodes/resolve', methods=['GET'])
 def consensus():
     replaced = blockchain.resolve_conflicts()
