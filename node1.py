@@ -5,7 +5,6 @@ from time import time
 from uuid import uuid4
 from flask import Flask, jsonify, request
 from urllib.parse import urlparse
-import subprocess
 from Blockchain.blockchain import Blockchain 
 
 # The server app, the server represents one node on the blockchain
